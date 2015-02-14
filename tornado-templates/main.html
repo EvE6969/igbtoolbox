@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>IGB toolbox of awesomeness</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% include "includes/css.html" %}
+
+  <script type="text/javascript">
+  	if (typeof eveintel == 'undefined') { eveintel = {debug: '{{debug}}'}; }
+  </script>
+
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div>
+        <ul class="nav navbar-nav">
+        </ul>
+        <!-- div class="nav navbar-nav navbar-right">
+          <li>
+          {% if ei_pilot.authUser %}
+            {{ ei_pilot.authUserShort }} (<a href="/logout">Sign out</a>)
+          {% else %}
+            <button type="button" class="btn btn-default navbar-btn navbar-right" onclick="javascript:window.location.href = '/login'">Sign in</button>
+          {% end %}
+          </li>
+        </div -->
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+  <a href="https://github.com/igbtoolbox"><img style="position: absolute; top: 20px; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+  <div class="container">
+    <div id="m_errors" style="display:none;"></div>
+    <div id="m_messages" style="display:none;"></div>
+
+    <div id="m_trustmanager" style="display:none;" class="panel panel-danger">
+
+      <div class="row">
+        This tool requires you to add it to your list of trusted sites. This is necessary to
+        enable the IGB to send further informations about your character and location along with each request to this site. Data about your corporation
+        is used to check if you are allowed to access this application.
+      </div>
+
+      <div class="row">
+        <button type="button" class="btn btn-primary btn-trustme">Ok, grant trust!</button>
+      </div>
+
+      <div class="row">
+        <a href="javascript:window.location.reload();">Make sure to reload this page to apply changes.</a>
+      </div>
+
+      <div class="row">In case the button above doesn't work please add this site to your list of trusted sites manually
+        using the IGB options.
+      </div>
+
+    </div>
+  </div>
+
+  {% module Template("includes/about.html", ei_pilot=ei_pilot, ei_debug=debug) %}
+
+  {% for incl in ei_module_templates %}
+  	{% module Template(incl, ei_pilot=ei_pilot, ei_debug=debug, ei_igb=igb) %}
+  {% end %}
+
+  <footer>
+    IGB toolbox of awesomeness - <a href="http://rzr.uservoice.com/" title="Feedback" target="_new" class="eve_feedback_link">Feedback</a>
+  </footer>
+
+  {% include "includes/js.html" %}
+
+</body>
+</html>

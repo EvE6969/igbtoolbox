@@ -1,0 +1,25 @@
+{
+  "name": "igbtoolbox",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igbtoolbox/igbtoolbox.git"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-release": "^0.10.0",
+    "jsx-loader": "^0.12.2"
+  },
+  "scripts": {
+    "build": "grunt cssmin concat:requires && webpack --progress --colors --debug --output-pathinfo",
+    "minimize": "grunt cssmin concat:requires && webpack -p --progress --colors --devtool none --output-file igbtoolbox.min.js",
+    "watch-webpack": "webpack --progress --colors --watch"
+  },
+  "dependencies": {
+    "css-loader": "^0.9.1",
+    "style-loader": "^0.8.3"
+  }
+}

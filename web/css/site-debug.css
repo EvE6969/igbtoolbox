@@ -1,0 +1,48 @@
+
+footer {
+  margin: 2em;
+
+}
+
+.eve_secstatus.eve_zerozero {
+  color: #f33;
+}
+
+.eve_secstatus.eve_highsec {
+  color: #3f3;
+}
+
+.eve_secstatus.eve_lowsec {
+  color: #f93;
+}
+
+#m_errors {
+  background: #c00;
+  margin: 0 .5em .5em .5em;
+  padding: .25em .5em .25em .5em;
+}
+
+#m_messages {
+  background: #363;
+  border: 1px solid #010;
+  margin: 0 .5em .5em .5em;
+  padding: .25em .5em .25em .5em;
+}
+
+div#m_trustmanager > .row {
+  margin: .25em 0 .25em 0;
+}
+
+
+.eve_copyright {
+  padding: 1em 0 1em 0;
+  color: #999;
+  font-size: xx-small;
+}
+
+/*
+ * to not place autocomplete behind dialog
+ */
+.ui-front {
+  z-index: 10000 !important;
+}

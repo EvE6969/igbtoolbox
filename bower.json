@@ -1,0 +1,31 @@
+{
+  "name": "igbtoolbox",
+  "version": "0.0.1",
+  "authors": [
+    "Stefan Podkowinski <github@midnightdrift.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "src/**/*.pyc",
+    "src/**/__pycache__",
+    "devmodules",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~1.11.0",
+    "underscore": "~1.6.0",
+    "bootstrap": "~3.2.0",
+
+    "evesignatures": "git://github.com/igbtoolbox/evesignatures.git",
+
+    "eveportal": "git://github.com/igbtoolbox/eveportal.git",
+    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git",
+    "eveauthzsimple": "git://github.com/igbtoolbox/eveauthzsimple.git"
+
+  }
+}

@@ -1,0 +1,12 @@
+
+@media (max-width: 30em) {
+  .sc_small {
+    display: none !important;
+  }
+}
+
+@media (max-width: 40em) {
+  .sc_normal {
+    display: none !important;
+  }
+}

@@ -1,0 +1,14 @@
+*.pyc
+*.ser
+*.bak
+*.log
+*~
+.settings
+__pycache__
+devmodules
+bower_components
+node_modules
+web/js/build
+web/css/igbtoolbox.min.css
+.vagrant
+scripts/sync*

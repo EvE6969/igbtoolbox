@@ -1,0 +1,51 @@
+server:
+  # debug mode for python and js -- can also be set to true with ./scripts/start.sh --debug
+  debug: False
+
+  # default port to use
+  port: 8080
+
+  # Enable and change to random string used as key for signed cookies (optional)
+  #cookie_secret: ".."
+
+  # Google Analytics Account ID (optional)
+  #ga-account: UA-XXXXXXXX-X
+
+  # In-game character name of admin, will be used as additional meta-info for XML requests (optional)
+  #in_game_owner: MyCharacter Name
+
+
+# MongoDB connectivity settings
+# Leave defaults for Vagrant dev environment - change for production
+mongodb:
+  host: "database"
+  port: 27017
+  db_domain: "eve_domain"
+  db_evekill: "eve_kill"
+  db_global: "eve_global"
+
+access:
+  # ID of hosting alliance - use dotlan to find matching AllianceID for your alliance (mandatory)
+  host_alliance_id: TODO
+
+  modules:
+
+    # list of module based permissions
+    # add permissions as described in installation guide of respective module
+
+    # module:
+      # # visible to all players?
+      # public: true|false
+      #
+      # # list of alliances allowed for module
+      # alliance_ids:
+      #   - 123456
+      #
+      # # list of corps allowed for module
+      # corp_ids:
+      #   - 123456
+      #
+      # # list of pilots allowed for module
+      # pilot_names:
+      #   - CharacterX
+

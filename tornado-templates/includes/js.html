@@ -1,0 +1,30 @@
+
+  {% if not debug %}
+  <script type='text/javascript' async src="http://www.google-analytics.com/ga.js"></script>
+  {% end %}
+
+  <script type="text/javascript">
+  // GA
+  window['_gaq'] = window['_gaq'] || [];
+  {% if not debug %}
+    window['_gaq'].push(['_setAccount', '{{ ga_account }}']);
+    {% if ei_pilot %}
+      window['_gaq'].push(['_setCustomVar', 1, 'Alliance', '{{ei_pilot.allianceName}}', 2 ]);
+      window['_gaq'].push(['_setCustomVar', 2, 'Corporation', '{{ei_pilot.corpName}}', 2 ]);
+    {% end %}
+    window['_gaq'].push(['_setSiteSpeedSampleRate', 5]);
+    window['_gaq'].push(['_trackPageview']);
+  {% end %}
+  </script>
+
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-sham.min.js"></script>
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/bluebird/2.3.11/bluebird.min.js"></script>
+  <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+  {% if debug %}
+  <script src="/static/common/js/build/igbtoolbox.js"></script>
+  {% else %}
+  <script src="/static/common/js/build/igbtoolbox.min.js"></script>
+  {% end %}
