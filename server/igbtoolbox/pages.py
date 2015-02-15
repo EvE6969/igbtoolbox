@@ -19,6 +19,10 @@ class MainPage(evecommon.AbstractPage):
         cfgServer = settings.get_settings('server')
         ga = cfgServer.get('ga-account')
 
+        # make sure a xsrf cookie is generated and send as http header to the browser
+        if self.settings['xsrf_cookies']:
+            self.xsrf_token
+
         self.render("main.html", debug=settings.DEBUG, igb=isigb, ei_pilot=self._pilot,
             ei_module_templates=self.application.settings['module_templates'], ga_account=ga)
 

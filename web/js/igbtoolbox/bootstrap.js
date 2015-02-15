@@ -59,6 +59,17 @@ define(
           isLoggedIn = authUser != undefined;
         }
 
+        // send xhrf cookie with each ajax request
+        function getCookie(name) {
+            var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
+            return r ? r[1] : undefined;
+        }
+
+        var xsrf = getCookie("_xsrf");
+        if(xsrf) {
+          eveintel.EI_OVERRIDE_HEADERS['X-XSRFToken'] = xsrf;
+        }
+
         //eveintel.singleton = {};
 
         if(pilot) {
