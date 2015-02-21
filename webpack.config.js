@@ -51,7 +51,8 @@ module.exports = {
       moment: 'momentjs/moment.js',
       react: 'react/react',
       sockjs: 'sockjs/sockjs',
-      numeral: 'numeraljs'
+      numeral: 'numeraljs',
+      immutable: 'immutable/dist/immutable.js'
     },
     extensions: ['', '.js', '.jsx'],
   },
