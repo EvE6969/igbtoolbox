@@ -2,7 +2,6 @@
 from igbtoolbox.universedump.systems import *
 from igbtoolbox.universedump.sec import *
 from igbtoolbox.universedump.ships import *
-from igbtoolbox.universedump.wh import *
 
 # TODO: move code to SDE module
 
@@ -33,9 +32,3 @@ def getRegionBySystemName(name):
 
 def getShipById(i):
     return SHIPS_BY_ID.get(i)
-
-def getWormholeByType(t):
-
-    for wt in WH_TYPES:
-        if wt['wh'] == t:
-            return wt
