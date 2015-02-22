@@ -3576,7 +3576,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 0.5em 1em;
+  padding: 0.25em 1em;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -3759,7 +3759,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 1.5em;
-  margin-bottom: 17px;
+  margin-bottom: 0.5em;
   border: 1px solid transparent;
 }
 @media (min-width: 280px) {
