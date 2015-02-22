@@ -49,7 +49,7 @@ module.exports = {
       jquery: "jquery/dist/jquery",
       'jquery-ui': "jquery-ui/ui",
       moment: 'momentjs/moment.js',
-      react: 'react/react',
+      react: 'react/react-with-addons',
       sockjs: 'sockjs/sockjs',
       numeral: 'numeraljs',
       immutable: 'immutable/dist/immutable.js'
