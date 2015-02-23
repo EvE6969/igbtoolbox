@@ -6,7 +6,7 @@ The IGB toolbox has been created as a platform for creating web based tools for 
 
 The server side stack is very simple. Applications are served by Tornado using Python 3. MongoDB is used as default database. Python has been chosen as language as it's very versatile and easy to learn. Developers should be able to get started quickly without having to learn complex frameworks.
 
-Client side JavaScript code has also been designed with simplicity in mind. [React](http://reactjs.com/) and [FlightJS](http://flightjs.github.io/) is used to create JavaScript components which are decoupled and interact based on events. You are however not stuck using these framworks and can in fact use any JavaScript framework you like, as generated events are just custom DOM events.
+Client side JavaScript code has also been designed with simplicity in mind. [React](http://reactjs.com/) and [FlightJS](http://flightjs.github.io/) is used to create JavaScript components which are decoupled and interact with each other based on events. You are however not stuck using these framworks and can in fact use any JavaScript framework you like, as generated events are just custom DOM events.
 
 [Bower](http://bower.io/) is used as package manager to include JavaScript dependencies. However, it's also used to include individual tools when setting up you own toolbox instance. To make this possible, each tool must adhere a certain convention on where certain JavaScript and Python files can be found. Read more on how to create custom modules [here](http://TODO).
 
@@ -20,7 +20,7 @@ The following applications are available to be used in a IGB toolbox setup:
 
 The following list of modules can be used to create new applications for the IGB toolbox:
 
-* [Portal](https://github.com/igbtoolbox/eveportal) = basic portal components
+* [Portal](https://github.com/igbtoolbox/eveportal) - basic portal components
 * [IGB](https://github.com/igbtoolbox/eveigb) - basic IGB related functionalities
 * [Simple Authentication](https://github.com/igbtoolbox/eveauthnsimple) - basic access control
 * [Simple Authorization](https://github.com/igbtoolbox/eveauthzsimple) - basic permission management
@@ -52,11 +52,20 @@ If you don't want to use Vagrant for some reason you can also install a custom d
 * Install Python requirements in a new virtualenv space (see `scripts/bootstrap-venv.sh`)
 * Install NodeJS and node developer tools incl. git (see `scripts/bootstrap-node.sh`)
 
-##### Starting the Server
+#### Creating a JavaScript build
 
-Simply change to the project directory (e.g. `/vagrant`) and run `scripts/start.sh`. You should see the server output on your console. Afterwards you should be able to access the server from `http://localhost:8080/`. Hit CTRL+C in the console to stop the server.
+All individual JavaScript files will be bundled using [webpack](https://webpack.github.io/). To create a build you need to setup and login into the dev environment as described above. For vagrant, change to the project dir:
+* `vagrant ssh`
+* `cd /vagrant`
 
-##### Server Configuration
+Create a build:
+* `npm run build` or for production `npm run minimize`
+
+#### Starting the Server
+
+Change to the project directory (e.g. `/vagrant`) and run `scripts/start.sh --debug` to start the server. You should see the server output on your console. Afterwards you should be able to access the server from `http://localhost:8080/`. At this point the toolbox will be empty except from the about page. You'll have to install [applications](#available-applications) for more content. Hit CTRL+C in the console to stop the server.
+
+#### Server Configuration
 
 A local config file will be created after starting the server for the first time. You'll have to edit the file at `/home/vagrant/.igbtoolbox.yml` and add your alliance in `host_alliance_id`. Restart the server afterwards.
 
