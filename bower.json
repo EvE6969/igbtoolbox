@@ -23,9 +23,9 @@
 
     "evesignatures": "git://github.com/igbtoolbox/evesignatures.git",
 
-    "eveportal": "git://github.com/igbtoolbox/eveportal.git",
-    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git",
-    "eveauthzsimple": "git://github.com/igbtoolbox/eveauthzsimple.git"
+    "eveportal": "git://github.com/igbtoolbox/eveportal.git#~0.0.1",
+    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git#~0.0.1",
+    "eveauthzsimple": "git://github.com/igbtoolbox/eveauthzsimple.git#~0.0.1"
 
   }
 }
