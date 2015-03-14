@@ -52,11 +52,12 @@ module.exports = {
       react: 'react/react-with-addons',
       sockjs: 'sockjs/sockjs',
       numeral: 'numeraljs',
-      immutable: 'immutable/dist/immutable.js'
+      immutable: 'immutable/dist/immutable.js',
+      rx: 'rxjs/dist/rx.all'
     },
     extensions: ['', '.js', '.jsx'],
   },
-  devtool: "#eval-source-map",
+  devtool: "#eval",
   resolveLoader: {
     root:  path.join(__dirname, "node_modules")
   },
