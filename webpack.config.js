@@ -49,7 +49,7 @@ module.exports = {
       jquery: "jquery/dist/jquery",
       'jquery-ui': "jquery-ui/ui",
       moment: 'momentjs/moment.js',
-      react: 'react/react-with-addons',
+      // react: 'react/react-with-addons',
       sockjs: 'sockjs/sockjs',
       numeral: 'numeraljs',
       immutable: 'immutable/dist/immutable.js',
@@ -69,7 +69,9 @@ module.exports = {
         //loader: 'jsx-loader?insertPragma=React.DOM&harmony'
         loader: 'jsx-loader'
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      // the optional 'selfContained' transformer tells babel to require the runtime instead of inlining it.
+      {test: /\/eve.+?\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader?modules=amd&optional=selfContained'}
     ]
   },
   externals: {
