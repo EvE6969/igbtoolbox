@@ -18,7 +18,7 @@ define(
       attached: function() {
         this._isActivated = false;
 
-        this.trigger(navEvents.NEED_NAV_ITEM, new navEvents.NavItem("About", this.attr.navActivatedEventId));
+        this.trigger(navEvents.NEED_NAV_ITEM, new navEvents.NavItem("About", this.attr.navActivatedEventId, 1000));
 
         this.on(document, navEvents.NAV_ITEM_ACTIVATED, this._activated);
       },
