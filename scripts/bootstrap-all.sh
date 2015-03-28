@@ -2,6 +2,8 @@
 
 echo "Installing MongoDB"
 su -c /vagrant/scripts/bootstrap-mongodb.sh  - vagrant
+echo "Installing PostgreSQL"
+su -c /vagrant/scripts/bootstrap-postgresql.sh  - vagrant
 echo "Installing Python"
 su -c /vagrant/scripts/bootstrap-python.sh  - vagrant
 echo "Installing Python VENV"

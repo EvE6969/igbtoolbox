@@ -2,11 +2,14 @@
 
 import logging.handlers, os, getopt, sys, signal, importlib, pathlib, json
 from apscheduler.schedulers.tornado import TornadoScheduler
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import tornado.web
 import tornado.httpserver
+from tornado.platform.asyncio import AsyncIOMainLoop
+import asyncio
 import sockjs.tornado
 import motor
-from igbtoolbox import settings
+from igbtoolbox import settings, universe
 
 
 # list of imported modules (modulename, mod)
@@ -146,11 +149,13 @@ if __name__ == "__main__":
     fd.write(str(os.getpid()))
     fd.close()
 
-
     # init logging
     logging.getLogger().setLevel(logging.DEBUG)
     if not settings.DEBUG:
         logging.getLogger().addHandler(logging.handlers.SysLogHandler('/dev/log', logging.handlers.SysLogHandler.LOG_LOCAL6))
+
+    # disable asyncio spam
+    logging.getLogger('asyncio').setLevel(logging.INFO)
 
     # load modules
     if not modulesdir:
@@ -162,8 +167,12 @@ if __name__ == "__main__":
     signal.signal(signal.SIGHUP, _onHupSignal)
     signal.signal(signal.SIGTERM, _onTermSignal)
 
+    # create and install asyncio main event loop
+    # http://www.tornadoweb.org/en/stable/asyncio.html#tornado.platform.asyncio.AsyncIOMainLoop
+    AsyncIOMainLoop().install()
+
     # advanced python scheduler for reoccuring tasks as defined by modules
-    _scheduler = TornadoScheduler()
+    _scheduler = AsyncIOScheduler() #TornadoScheduler()
 
     # reload settings periodically
     _scheduler.add_job(settings.load_settings, 'interval', minutes=5)
@@ -172,6 +181,9 @@ if __name__ == "__main__":
     import eveapi
     if 'in_game_owner' in cfgServer:
         eveapi.set_user_agent('Host: %s; Admin-EVE-Character: %s' % ('dev-local', cfgServer['in_game_owner']))
+
+    # init universe data from SDE
+    asyncio.get_event_loop().run_until_complete(universe.initCaches())
 
     # only import at this point to make sure all required modules have already been loaded
     from igbtoolbox import pages
@@ -206,7 +218,7 @@ if __name__ == "__main__":
                 _module_templates.append(r)
 
         if hasattr(m, 'schedule'):
-          m.schedule(_scheduler)
+            m.schedule(_scheduler)
 
         if hasattr(m, 'onStartup'):
             m.onStartup()
@@ -247,9 +259,14 @@ if __name__ == "__main__":
 
     # If your log is full of "WARNING: Connection closed by the client", pass no_keep_alive as True to HTTPServer constructor:
     # https://github.com/mrjoes/sockjs-tornado
-    server = tornado.httpserver.HTTPServer(application) # , no_keep_alive=True)
-    server.bind(int(port))
-    server.start(1)  # Forks multiple sub-processes
+    # server = tornado.httpserver.HTTPServer(application) # , no_keep_alive=True)
+    # server.bind(int(port))
+    # server.start(1)  # Forks multiple sub-processes
+    application.listen(int(port))
 
     # start tornado event loop
-    tornado.ioloop.IOLoop.instance().start()
+    try:
+        #tornado.ioloop.IOLoop.instance().start()
+        asyncio.get_event_loop().run_forever()
+    except KeyboardInterrupt:
+        _onTermSignal(None)

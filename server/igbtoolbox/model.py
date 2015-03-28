@@ -49,7 +49,7 @@ class Pilot:
         self.shipId = hd.get('EVE_SHIPTYPEID')
         if self.shipId: self.shipId = int(self.shipId)
         else: self.shipId = 670 # igb bug or just pod killed and in station
-        self.ship = universe.getShipById(self.shipId)
+        self.ship = universe.getShipNameById(self.shipId)
 
         self.authUser = None
         self.igb = None

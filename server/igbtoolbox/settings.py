@@ -1,5 +1,6 @@
 import os, yaml, logging, shutil
 import motor
+import asyncio, aiopg
 
 __settings_path = os.path.join(os.environ['HOME'], ".igbtoolbox.yml")
 __settings_template_path = os.path.join(os.path.dirname(__file__), "..", "..", "settings_template.yml")
@@ -22,6 +23,8 @@ __settings = {}
 MONGODB_DATABASE_DOMAIN = None
 MONGODB_DATABASE_EVEKILL = None
 MONGODB_DATABASE_GLOBAL = None
+
+_SDE_DBCP = None
 
 DEBUG = None
 
@@ -53,3 +56,19 @@ def get_mongodb_client(db=None):
     cl = motor.MotorClient(get_settings("mongodb")["host"], get_settings("mongodb")["port"])
     if db: return cl[db]
     else: return cl
+
+
+def get_sde_pool():
+    global _SDE_DBCP
+    if not _SDE_DBCP:
+        cfg = get_settings("postgresql")
+        dbname = cfg['db_sde']
+        user = cfg['user']
+        password = cfg['password']
+        host = cfg['host']
+        port = cfg['port']
+        minSize = cfg.get('pool_min_size', 1)
+        maxSize = cfg.get('pool_max_size', 5)
+        _SDE_DBCP = yield from aiopg.create_pool("dbname={} user={} password={} host={} port={}".format(
+            dbname, user, password, host, port), minsize=minSize, maxsize=maxSize)
+    return _SDE_DBCP

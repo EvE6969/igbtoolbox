@@ -15,6 +15,7 @@ pip install motor
 pip install sockjs-tornado
 pip install apscheduler
 pip install PyYAML
-pip install networkx
+#pip install networkx
+pip install aiopg
 
 sudo bash -c "echo '127.0.0.1 database' >> /etc/hosts"

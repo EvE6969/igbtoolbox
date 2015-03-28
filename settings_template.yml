@@ -24,6 +24,15 @@ mongodb:
   db_evekill: "eve_kill"
   db_global: "eve_global"
 
+# PostgreSQL connectivity settings
+# Used for static data export queries
+postgresql:
+  host: "localhost"
+  port: 5432
+  user: "eve"
+  password: "eve"
+  db_sde: "eve_sde"
+
 access:
   # ID of hosting alliance - use dotlan to find matching AllianceID for your alliance (mandatory)
   host_alliance_id: TODO
