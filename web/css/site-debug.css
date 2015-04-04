@@ -1,7 +1,6 @@
 
-footer {
-  margin: 2em;
-
+body {
+  padding-bottom: 2em !important;
 }
 
 .eve_secstatus.eve_zerozero {
