@@ -155,7 +155,7 @@ if __name__ == "__main__":
         logging.getLogger().addHandler(logging.handlers.SysLogHandler('/dev/log', logging.handlers.SysLogHandler.LOG_LOCAL6))
 
     # disable asyncio spam
-    logging.getLogger('asyncio').setLevel(logging.INFO)
+    logging.getLogger('asyncio').setLevel(logging.WARNING)
 
     # load modules
     if not modulesdir:
