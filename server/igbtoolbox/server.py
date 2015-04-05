@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import logging.handlers, os, getopt, sys, signal, importlib, pathlib, json
+from os import path
 from apscheduler.schedulers.tornado import TornadoScheduler
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import tornado.web
@@ -192,10 +193,10 @@ if __name__ == "__main__":
     urls = []
 
     if settings.DEBUG:
-        urls.append((r"/static/bower_components/(.*)", tornado.web.StaticFileHandler, {"path": os.path.join(os.path.dirname(__file__), '..', '..', 'bower_components')}))
+        urls.append((r"/static/bower_components/(.*)", tornado.web.StaticFileHandler, {"path": path.join(path.dirname(__file__), '..', '..', 'bower_components')}))
 
     urls.extend([
-            (r"/static/common/(.*)", tornado.web.StaticFileHandler, {"path": os.path.join(os.path.dirname(__file__), '..', '..', 'web')}),
+            (r"/static/common/(.*)", tornado.web.StaticFileHandler, {"path": path.join(path.dirname(__file__), '..', '..', 'web')}),
             ('/', pages.MainPage)
             ])
 
@@ -213,7 +214,7 @@ if __name__ == "__main__":
         if hasattr(m, 'tornado_templates'):
             for r in m.tornado_templates():
                 # adjust path for modules directory
-                r = os.path.join('..', r)
+                r = path.join('..', r)
                 logging.debug("Registering template %s for %s" % (r, n))
                 _module_templates.append(r)
 
@@ -227,14 +228,24 @@ if __name__ == "__main__":
     # start scheduler
     _scheduler.start()
 
+    # read current hash for webpack js builds
+    pathHash = path.join(path.dirname(__file__), '..', '..', 'web', 'js', 'build', 'build.hash')
+    jshash = None
+    if path.isfile(pathHash):
+        with open(pathHash) as f:
+            jshash = f.read().strip()
+            logging.debug("Using webpack build hash %s" % jshash)
+            
+
     # create tornado application
     app_settings = {
-        #"static_path": os.path.join(os.path.dirname(__file__), '..', 'web'),
-        'template_path': os.path.join(os.path.dirname(__file__), '..', '..', 'tornado-templates'),
+        #"static_path": path.join(path.dirname(__file__), '..', 'web'),
+        'template_path': path.join(path.dirname(__file__), '..', '..', 'tornado-templates'),
         'module_templates': _module_templates,
         "login_url": "/login",
         "xsrf_cookies": False,
         "debug": settings.DEBUG,
+        "jshash": jshash,
         # mongodb db clients
         "db_domain": settings.get_mongodb_client(settings.MONGODB_DATABASE_DOMAIN),
         "db_global": settings.get_mongodb_client(settings.MONGODB_DATABASE_GLOBAL),

@@ -78,5 +78,16 @@ module.exports = {
     //don't bundle the 'react' npm package with our bundle.js
     //but get it from a global 'React' variable
     //'react': 'React'
-  }
+  },
+  plugins: [
+    // https://webpack.github.io/docs/long-term-caching.html
+    function() {
+      this.plugin("done", function(stats) {
+        require("fs").writeFileSync(
+          path.join(__dirname, "web", "js", "build", "build.hash"),
+          stats['hash'])
+          //JSON.stringify(stats.toJson()));
+      });
+    }
+]
 };

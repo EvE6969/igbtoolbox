@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "grunt cssmin concat:requires && webpack --progress --colors --debug --output-pathinfo",
-    "minimize": "grunt cssmin concat:requires && webpack -p --progress --colors --devtool none --output-file igbtoolbox.min.js",
+    "minimize": "grunt cssmin concat:requires && webpack -p --progress --colors --devtool none --output-file igbtoolbox.[hash].min.js",
     "watch-webpack": "webpack --progress --colors --watch"
   }
 }

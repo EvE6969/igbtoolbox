@@ -24,6 +24,7 @@ class MainPage(evecommon.AbstractPage):
             self.xsrf_token
 
         self.render("main.html", debug=settings.DEBUG, igb=isigb, ei_pilot=self._pilot,
-            ei_module_templates=self.application.settings['module_templates'], ga_account=ga)
+            ei_module_templates=self.application.settings['module_templates'], ga_account=ga,
+            jshash=self.application.settings['jshash'])
 
 
