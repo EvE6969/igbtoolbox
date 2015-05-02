@@ -98,7 +98,7 @@ define(
 
         // nav controller handle requests from modules to add items to primary navigation
         var navUI = require("igbtoolbox/portal/nav-ui");
-        navUI.attachTo('ul.nav.navbar-nav');
+        navUI.attachTo('#m_navbar');
 
         // sockjs connection
         var messagebus = require("igbtoolbox/messagebus/messagebus");

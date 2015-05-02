@@ -19,17 +19,19 @@
     <div class="container">
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div>
-        <ul class="nav navbar-nav">
+        <ul id="m_navbar" class="nav navbar-nav">
         </ul>
-        <!-- div class="nav navbar-nav navbar-right">
+        {% if enable_login %}
+        <ul class="nav navbar-nav navbar-right">
           <li>
           {% if ei_pilot.authUser %}
-            {{ ei_pilot.authUserShort }} (<a href="/logout">Sign out</a>)
+            <a href="/logout">Sign out ({{ ei_pilot.authUserShort }})</a>
           {% else %}
-            <button type="button" class="btn btn-default navbar-btn navbar-right" onclick="javascript:window.location.href = '/login'">Sign in</button>
+            <a href="/login">Sign in</a>
           {% end %}
           </li>
-        </div -->
+        </ul>
+        {% end %}
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
   </nav>

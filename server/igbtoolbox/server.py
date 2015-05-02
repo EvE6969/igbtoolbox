@@ -235,7 +235,7 @@ if __name__ == "__main__":
         with open(pathHash) as f:
             jshash = f.read().strip()
             logging.debug("Using webpack build hash %s" % jshash)
-            
+
 
     # create tornado application
     app_settings = {
@@ -252,11 +252,19 @@ if __name__ == "__main__":
         "db_kill": settings.get_mongodb_client(settings.MONGODB_DATABASE_EVEKILL)
     }
 
+    # XSRF protection
     cookieSecret = cfgServer.get('cookie_secret')
     if cookieSecret:
         logging.debug("Secure cookies enabled")
         app_settings["xsrf_cookies"] = True
         app_settings["cookie_secret"] = cookieSecret
+
+
+    # required for GoogleOAuth2Mixin
+    cfgAccess = settings.get_settings('access')
+    oauth = cfgAccess.get('google_oauth')
+    if oauth:
+        app_settings["google_oauth"] = {'key': oauth['key'], 'secret': oauth['secret']}
 
 
     # sockjs global message bus shared by all clients

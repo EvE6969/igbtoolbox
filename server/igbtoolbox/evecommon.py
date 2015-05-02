@@ -71,6 +71,16 @@ class AbstractPage(tornado.web.RequestHandler):
 
         if not hasattr(self, '__pilot'):
             self.__pilot = self.get_pilot(self.request)
+            # get authenticated user from cookie
+            buser = self.get_secure_cookie("ei_user")
+            if buser:
+                self.__pilot.authUser = buser.decode('UTF-8')
+                sn = self.__pilot.authUser
+                ix = sn.rfind('@')
+                if ix == -1:
+                    self.__pilot.authUserShort = sn
+                else:
+                    self.__pilot.authUserShort = sn[0:ix]
         return self.__pilot
 
     @staticmethod

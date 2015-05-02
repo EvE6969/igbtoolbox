@@ -19,11 +19,13 @@ class MainPage(evecommon.AbstractPage):
         cfgServer = settings.get_settings('server')
         ga = cfgServer.get('ga-account')
 
+        enableLogin = 'google_oauth' in settings.get_settings('access')
+
         # make sure a xsrf cookie is generated and send as http header to the browser
         if self.settings['xsrf_cookies']:
             self.xsrf_token
 
-        self.render("main.html", debug=settings.DEBUG, igb=isigb, ei_pilot=self._pilot,
+        self.render("main.html", debug=settings.DEBUG, igb=isigb, ei_pilot=self._pilot, enable_login=enableLogin,
             ei_module_templates=self.application.settings['module_templates'], ga_account=ga,
             jshash=self.application.settings['jshash'])
 
