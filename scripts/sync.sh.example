@@ -1,0 +1,2 @@
+#!/bin/bash -x
+rsync -vcrC --progress -m --delete --exclude='devmodules' --exclude='__pycache__' --include-from=scripts/sync-incl --exclude='*' . user@host:~/igbtoolbox/
