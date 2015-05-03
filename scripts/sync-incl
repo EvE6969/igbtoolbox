@@ -11,4 +11,5 @@ bower_components/eve*/tornado-templates/*.html
 bower_components/eve*/server/**.py
 bower_components/eve*/web/im/*
 bower_components/eve*/datadumps/*
+bower_components/eve*/graph/*.ser
 bower_components/evefleet/composition/*.yml
