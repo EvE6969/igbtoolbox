@@ -15,6 +15,7 @@ Client side JavaScript code has also been designed with simplicity in mind. [Rea
 The following applications are available to be used in a IGB toolbox setup:
 
 * [Signatures](https://github.com/igbtoolbox/evesignatures) -  collaborative signature scanning tool
+* [Fleet](https://github.com/igbtoolbox/evefleet) -  fleet participation tracker
 
 ### Available modules
 
