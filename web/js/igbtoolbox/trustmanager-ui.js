@@ -34,15 +34,14 @@ define(
           if(!pilot || !pilot.trusted) {
             console.debug("Trust flag not set for page, showing trust module");
             this.$node.show();
-          } else {
-            console.debug("Trust flag set");
-            this.$node.hide();
           }
         },
 
         _requestTrust: function() {
           CCPEVE['requestTrust']('http://' + window.location.host);
-          window.setTimeout("window.location.reload()", 10000);
+          // force reload after some time in case trust dialog has been shown - just in case people don't they have
+          // to reload the browser window
+          window.setTimeout("window.location.reload()", 8000);
           _gaq.push(['_trackEvent', 'Access', 'Trust Requested']);
         }
 
