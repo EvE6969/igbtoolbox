@@ -49,6 +49,7 @@ Please be patient during the first time the VM is started. It will take some tim
 If you don't want to use Vagrant for some reason you can also install a custom dev environment with the following steps. Fortunately you can use most of the scripts creating for Vagrant which can be found at `scripts/bootstrap-*.sh`.
 
 * [Install MongoDB](https://www.mongodb.org/)
+* Install PostgreSQL including the current EVE static data export (see `scripts/bootstrap-postgresql.sh`)
 * Install Python 3 and virtualenv (see `scripts/bootstrap-python.sh` for Ubuntu)
 * Install Python requirements in a new virtualenv space (see `scripts/bootstrap-venv.sh`)
 * Install NodeJS and node developer tools incl. git (see `scripts/bootstrap-node.sh`)
@@ -101,4 +102,4 @@ You need to add the following headers (provided values are examples):
 
 ### Deploying to Production
 
-Please follow the steps described in Manual Installation except for the NodeJS tools. Afterwards you can use a tool like `rsync` to deploy the project to the server, see `scripts/sync-*` for examples.
+Please follow the steps described in Manual Installation except for the NodeJS tools. Afterwards you can use a tool like `rsync` to deploy the project to the server, see `scripts/sync.sh.example`.
